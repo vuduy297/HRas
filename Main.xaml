@@ -2599,13 +2599,13 @@
           <av:Size x:Key="ShapeSize">200,51</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="HRASDATA" sap:VirtualizedContainerService.HintSize="560,2271" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="HRAS.xlsx">
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="HRASDATA" sap:VirtualizedContainerService.HintSize="1078,3218" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="HRAS.xlsx">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Processing" sap:VirtualizedContainerService.HintSize="526,2162" sap2010:WorkflowViewState.IdRef="Sequence_75">
+            <Sequence DisplayName="Processing" sap:VirtualizedContainerService.HintSize="1044,3109" sap2010:WorkflowViewState.IdRef="Sequence_75">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataTable" Name="dtHras" />
                 <Variable x:TypeArguments="x:Int32" Name="DongDau" />
@@ -2614,30 +2614,129 @@
                 <Variable x:TypeArguments="x:Int32" Name="DongDauIncr" />
                 <Variable x:TypeArguments="x:String" Name="UserName" />
                 <Variable x:TypeArguments="x:String" Name="PassWord" />
+                <Variable x:TypeArguments="x:String" Name="UserInput" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:Comment sap:VirtualizedContainerService.HintSize="484,55" sap2010:WorkflowViewState.IdRef="Comment_17" Text="// Bắt đầu đăng nhập HRAS" />
-              <Assign DisplayName="UserName" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_43">
+              <ui:Comment sap:VirtualizedContainerService.HintSize="1002,55" sap2010:WorkflowViewState.IdRef="Comment_17" Text="// Bắt đầu đăng nhập HRAS" />
+              <Assign DisplayName="UserName" sap:VirtualizedContainerService.HintSize="1002,60" sap2010:WorkflowViewState.IdRef="Assign_43">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[UserName]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">27006M01</InArgument>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Password" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_44">
+              <Assign DisplayName="Password" sap:VirtualizedContainerService.HintSize="1002,60" sap2010:WorkflowViewState.IdRef="Assign_44">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[PassWord]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="UserName" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_23" SendWindowMessages="False" SimulateType="False" Text="[UserName]">
+              <ui:Comment DisplayName="Bắt đầu kiểm tra TK hệ thống" sap:VirtualizedContainerService.HintSize="1002,74" sap2010:WorkflowViewState.IdRef="Comment_19" Text="// Nếu người dùng không chọn thì mặc định là 27006" />
+              <ui:InputDialog DisplayName="Chon HEAD" sap:VirtualizedContainerService.HintSize="1002,92" sap2010:WorkflowViewState.IdRef="InputDialog_8" IsPassword="False" Label="Tick chọn 1 HEAD" Options="[{&#xD;&#xA;&quot;27006&quot;,&#xD;&#xA;&quot;27012&quot;,&#xD;&#xA;&quot;27016&quot;&#xD;&#xA;}]" Title="Chọn HEAD đăng nhập">
+                <ui:InputDialog.Result>
+                  <OutArgument x:TypeArguments="x:String">[UserInput]</OutArgument>
+                </ui:InputDialog.Result>
+              </ui:InputDialog>
+              <If Condition="[String.IsNullOrEmpty(UserInput) Or UserInput = &quot;27006&quot;]" sap:VirtualizedContainerService.HintSize="1002,566" sap2010:WorkflowViewState.IdRef="If_43">
+                <If.Then>
+                  <Sequence DisplayName="QT1" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_52">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[UserName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">27006M04</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_53">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[PassWord]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <If Condition="[UserInput = &quot;27012&quot;]" DisplayName="27012" sap:VirtualizedContainerService.HintSize="653,409" sap2010:WorkflowViewState.IdRef="If_44">
+                    <If.Then>
+                      <Sequence DisplayName="QT2" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_83">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_54">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[UserName]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">27012M06</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[PassWord]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="QT3" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_56">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[UserName]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">27016M02</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[PassWord]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </If.Else>
+              </If>
+              <ui:Comment DisplayName="Kết thúc kiểm tra TK hệ thống" sap:VirtualizedContainerService.HintSize="1002,55" sap2010:WorkflowViewState.IdRef="Comment_20" Text="// Write your comments in the Text property" />
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="UserName" EmptyField="True" sap:VirtualizedContainerService.HintSize="1002,134" sap2010:WorkflowViewState.IdRef="TypeInto_23" SendWindowMessages="False" SimulateType="False" Text="[UserName]">
                 <ui:TypeInto.Target>
                   <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="201630ad804285c483c992f56f662cbc" Selector="&lt;wnd app='nox.exe' cls='Qt5QWindowIcon' title='HRAS' /&gt;&lt;wnd cls='Qt5QWindowIcon' title='ScreenBoardClassWindow' /&gt;" WaitForReady="INTERACTIVE">
                     <ui:Target.ClippingRegion>
@@ -2646,7 +2745,7 @@
                   </ui:Target>
                 </ui:TypeInto.Target>
               </ui:TypeInto>
-              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Password" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_24" SendWindowMessages="False" SimulateType="False" Text="[PassWord]">
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Password" EmptyField="True" sap:VirtualizedContainerService.HintSize="1002,134" sap2010:WorkflowViewState.IdRef="TypeInto_24" SendWindowMessages="False" SimulateType="False" Text="[PassWord]">
                 <ui:TypeInto.Target>
                   <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9405d327015c6047a58fc9984bb1f0f1" Selector="&lt;wnd app='nox.exe' cls='Qt5QWindowIcon' title='HRAS' /&gt;&lt;wnd cls='Qt5QWindowIcon' title='ScreenBoardClassWindow' /&gt;" WaitForReady="INTERACTIVE">
                     <ui:Target.ClippingRegion>
@@ -2655,7 +2754,7 @@
                   </ui:Target>
                 </ui:TypeInto.Target>
               </ui:TypeInto>
-              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="ĐN" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_218" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="ĐN" sap:VirtualizedContainerService.HintSize="1002,106" sap2010:WorkflowViewState.IdRef="Click_218" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -2674,7 +2773,7 @@
                   </ui:Target>
                 </ui:Click.Target>
               </ui:Click>
-              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click " sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_219" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click " sap:VirtualizedContainerService.HintSize="1002,106" sap2010:WorkflowViewState.IdRef="Click_219" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
@@ -2693,8 +2792,8 @@
                   </ui:Target>
                 </ui:Click.Target>
               </ui:Click>
-              <ui:Comment sap:VirtualizedContainerService.HintSize="484,55" sap2010:WorkflowViewState.IdRef="Comment_18" Text="//Kết thúc đăng nhập HRAS" />
-              <Sequence DisplayName="DongNhapLieu" sap:VirtualizedContainerService.HintSize="484,66" sap2010:WorkflowViewState.IdRef="Sequence_72">
+              <ui:Comment sap:VirtualizedContainerService.HintSize="1002,55" sap2010:WorkflowViewState.IdRef="Comment_18" Text="//Kết thúc đăng nhập HRAS" />
+              <Sequence DisplayName="DongNhapLieu" sap:VirtualizedContainerService.HintSize="1002,66" sap2010:WorkflowViewState.IdRef="Sequence_72">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="sd:DataTable" Name="dtMyHondaPlus" />
                   <Variable x:TypeArguments="x:Int32" Name="TongSoDong" />
@@ -2890,7 +2989,7 @@
                 </Assign>
                 <ui:ExcelReadRange AddHeaders="False" DataTable="[dtHras]" DisplayName="MHDP_Data" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[dtReader.ToString]" SheetName="Data" />
               </Sequence>
-              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="QLCNBH" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_223" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="QLCNBH" sap:VirtualizedContainerService.HintSize="1002,106" sap2010:WorkflowViewState.IdRef="Click_223" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                 <ui:Click.CursorPosition>
                   <ui:CursorPosition Position="Center">
                     <ui:CursorPosition.OffsetX>
